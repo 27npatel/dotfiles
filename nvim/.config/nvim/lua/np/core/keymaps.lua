@@ -4,8 +4,9 @@ vim.g.mapleader = " "
 
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc =  "Format file" })
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally" })
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format file" })
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Replace word cursor is on globally" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "join lines" })
 vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
@@ -43,17 +44,22 @@ vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab"
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 vim.keymap.set("n", "<leader>fp", function()
-    local filePath = vim.fn.expand("%:~")
-    vim.fn.setreg("+", filePath)
-    print("File path copied to clipboard: " .. filePath)
+  local filePath = vim.fn.expand("%:~")
+  vim.fn.setreg("+", filePath)
+  print("File path copied to clipboard: " .. filePath)
 end, { desc = "Copy file path to clipboard" })
 
 vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", {
-    desc = "Restart Neovim (:restart)",
+  desc = "Restart Neovim (:restart)",
 })
 
 vim.keymap.set("n", "<leader>lr", function()
-    vim.cmd("lsp restart")
-    vim.notify("LSP restarted", vim.log.levels.INFO)
+  vim.cmd("lsp restart")
+  vim.notify("LSP restarted", vim.log.levels.INFO)
 end, { desc = "Restart LSP" })
 
+-- lsp
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Display hover information" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Display documentation" })
+vim.keymap.set({ "n", "v", "s" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format code" })
