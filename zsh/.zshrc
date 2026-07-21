@@ -62,3 +62,6 @@ alias glog='git log --oneline --graph --all'
 
 # lazygit
 alias lg="lazygit"
+
+# tmux
+alias tmux="tmux -f $TMUX_CONF"
