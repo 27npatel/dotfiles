@@ -1,7 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
   branch = "master", -- using master to fix issues with deprecated to definition warnings
-  -- '0.1.x' for stable ver.
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -39,13 +38,18 @@ return {
     })
 
     -- Keymaps
-    vim.keymap.set("n", "<leader>ff", builtin.find_files, {
-      desc = "Find files",
+    vim.keymap.set("n", "<leader>ff", function()
+      builtin.find_files({
+        hidden = true,
+      })
+    end, {
+      desc = "Find files (including hidden)",
     })
 
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
       desc = "Search text in project",
     })
+
     vim.keymap.set("n", "<leader>ths", "<cmd>Telescope themes<CR>", {
       noremap = true,
       silent = true,
