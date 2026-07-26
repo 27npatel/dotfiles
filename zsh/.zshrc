@@ -47,7 +47,7 @@ source ~/scripts/fzf-git.sh # fzf git
 # other alias shortcuts
 alias c="clear"
 alias e="exit"
-alias vim="nvim"
+alias n="nvim"
 
 # eza commands
 alias ls="eza --no-filesize --long --color=always --git --header --icons=always --no-user"
